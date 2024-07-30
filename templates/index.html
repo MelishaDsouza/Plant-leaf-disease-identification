@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Leaf Disease Identification</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url('https://toppng.com/uploads/preview/leaf-green-plant-branch-blur-1157028401954k8fhdk2g.jpg');
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #fff;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .upload-form {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+        .upload-form input[type="file"] {
+            margin: 20px 0;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 1em;
+            background: rgba(255, 255, 255, 0.25);
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .upload-form button {
+            padding: 15px 30px;
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1.2em;
+        }
+        .upload-form button:hover {
+            background-color: #c0392b;
+        }
+        .preview {
+            margin-top: 20px;
+            display: none;
+        }
+        .preview img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Plant Leaf Disease Identification</h1>
+    <div class="upload-form">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required onchange="previewImage(event)">
+            <div class="preview">
+                <img id="image-preview" src="#" alt="Image Preview">
+            </div>
+            <button type="submit">Upload and Diagnose</button>
+        </form>
+    </div>
+
+    <script>
+        function previewImage(event) {
+            const input = event.target;
+            const preview = document.querySelector('.preview');
+            const image = document.getElementById('image-preview');
+            const reader = new FileReader();
+
+            reader.onload = function() {
+                image.src = reader.result;
+                preview.style.display = 'block';
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    </script>
+</body>
+</html>
